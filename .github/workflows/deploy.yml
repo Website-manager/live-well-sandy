@@ -1,0 +1,38 @@
+name: Deploy to Cloudflare Pages
+
+# Auto-deploy: every push to main (which is what a Pages CMS "Save" creates)
+# rebuilds the Astro site and deploys it to the Cloudflare Pages project.
+# Sandy edits → Save → commit → this Action → live in ~1 minute.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # lets you trigger a deploy by hand from the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d085ce2c36e9c8a385f3b7772b8681d9
+          command: pages deploy dist --project-name=live-well-sandy --branch=main
