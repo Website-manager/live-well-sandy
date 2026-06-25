@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { KIT_FORM_ACTION } from '../lib/site';
 
 const contact = await getEntry('pages', 'contact');
 const home = await getEntry('pages', 'home');
@@ -88,14 +89,23 @@ const intro = c.contact_intro ?? "Have a question, or want my current specials i
               <h2 class="display">Get my specials in your inbox.</h2>
               <p>One friendly note now and then with the products and ideas I'm loving. No noise — just the good stuff, and you can unsubscribe anytime.</p>
             </div>
-            <!-- Signup placeholder: a Kit (ConvertKit) embed drops in here later.
-                 Until then the form is a graceful, non-functional preview. -->
-            <form class="signup-form" onsubmit="return false;" aria-describedby="signup-note">
-              <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
-              <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
-              <button class="btn btn-spring" type="submit">Join <span class="arr">→</span></button>
-              <p id="signup-note" class="signup-fine" style="flex-basis:100%;">Sign-up is coming soon — for now, just email me and I'll add you myself.</p>
-            </form>
+            {KIT_FORM_ACTION ? (
+              <!-- Live Kit (ConvertKit) signup — posts straight to Kit, no widget. -->
+              <form class="signup-form" action={KIT_FORM_ACTION} method="post" aria-describedby="signup-note">
+                <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+                <input id="email" name="email_address" type="email" required placeholder="you@example.com" autocomplete="email" />
+                <button class="btn btn-spring" type="submit">Join <span class="arr">→</span></button>
+                <p id="signup-note" class="signup-fine" style="flex-basis:100%;">One friendly note now and then. Unsubscribe anytime — you'll get a quick email to confirm.</p>
+              </form>
+            ) : (
+              <!-- Fallback until Sandy's Kit Form ID is set in src/lib/site.ts. -->
+              <form class="signup-form" onsubmit="return false;" aria-describedby="signup-note">
+                <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+                <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+                <button class="btn btn-spring" type="submit">Join <span class="arr">→</span></button>
+                <p id="signup-note" class="signup-fine" style="flex-basis:100%;">Sign-up is coming soon — for now, just email me and I'll add you myself.</p>
+              </form>
+            )}
           </div>
         </div>
       </div>
