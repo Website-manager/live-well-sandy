@@ -68,11 +68,11 @@ content:
       - name: eyebrow
         label: Small line above the headline
         type: string
-        description: The little label at the very top, e.g. "Natural wellness · No. 001".
+        description: The little label at the very top, e.g. "Natural wellness · Oak Ridge, TN".
       - name: title
         label: Big headline
         type: string
-        description: The large headline people see first.
+        description: The large headline people see first, e.g. "Natural wellness, shared simply."
       - name: intro
         label: Welcome paragraph
         type: text
@@ -88,27 +88,52 @@ content:
       - name: stat_1_value
         label: First number
         type: string
-        description: e.g. "15+"
+        description: A small number that stands out, e.g. "10".
       - name: stat_1_label
         label: First number — caption
         type: string
-        description: e.g. "Years guiding"
+        description: What the first number means, e.g. "Children".
       - name: stat_2_value
         label: Second number
         type: string
-        description: e.g. "600"
+        description: e.g. "22"
       - name: stat_2_label
         label: Second number — caption
         type: string
-        description: e.g. "In the circle"
+        description: What the second number means, e.g. "Grandchildren".
       - name: stat_3_value
         label: Third number
         type: string
-        description: e.g. "100%"
+        description: e.g. "2×/mo"
       - name: stat_3_label
         label: Third number — caption
         type: string
-        description: e.g. "Plant-based"
+        description: What the third number means, e.g. "Online classes".
+      # --- "Why work with me" — the three reasons shown on the home page ---
+      - name: value_1_title
+        label: Reason 1 — title
+        type: string
+        description: The bold title of your first reason, e.g. "Products I personally love".
+      - name: value_1_body
+        label: Reason 1 — short text
+        type: text
+        description: A sentence or two explaining the first reason.
+      - name: value_2_title
+        label: Reason 2 — title
+        type: string
+        description: The bold title of your second reason, e.g. "A real person to ask".
+      - name: value_2_body
+        label: Reason 2 — short text
+        type: text
+        description: A sentence or two explaining the second reason.
+      - name: value_3_title
+        label: Reason 3 — title
+        type: string
+        description: The bold title of your third reason, e.g. "Learn right alongside me".
+      - name: value_3_body
+        label: Reason 3 — short text
+        type: text
+        description: A sentence or two explaining the third reason.
 
   # ---------------------------------------------------------------------
   # ABOUT — Sandy's story section.
@@ -125,11 +150,11 @@ content:
       - name: eyebrow
         label: Small line above the quote
         type: string
-        description: The little label, e.g. "The hands behind the bench".
+        description: The little label at the top of the About page, e.g. "The person behind Live Well".
       - name: quote
         label: Big quote
         type: text
-        description: The large italic quote at the top of the story.
+        description: The large italic quote at the top of your story.
       - name: body
         label: Your story
         type: rich-text
@@ -144,15 +169,52 @@ content:
         label: Your title / location
         type: string
         description: Under your name, e.g. "Wellness guide · Oak Ridge, Tennessee".
+      # --- "What matters to me" — the three values shown on the About page ---
+      - name: about_value_1_title
+        label: Value 1 — title
+        type: string
+        description: The bold title of your first value, e.g. "Simple over complicated".
+      - name: about_value_1_body
+        label: Value 1 — short text
+        type: text
+        description: A sentence or two explaining the first value.
+      - name: about_value_2_title
+        label: Value 2 — title
+        type: string
+        description: The bold title of your second value, e.g. "Personal, not pushy".
+      - name: about_value_2_body
+        label: Value 2 — short text
+        type: text
+        description: A sentence or two explaining the second value.
+      - name: about_value_3_title
+        label: Value 3 — title
+        type: string
+        description: The bold title of your third value, e.g. "Community first".
+      - name: about_value_3_body
+        label: Value 3 — short text
+        type: text
+        description: A sentence or two explaining the third value.
+      - name: classes_body
+        label: Classes & workshop note
+        type: text
+        description: The short note about your online classes and home workshop, near the bottom of the About page.
 
   # ---------------------------------------------------------------------
-  # CONTACT — how people reach Sandy (used in the footer).
+  # CONTACT — the Contact page + the details used in the footer.
   # ---------------------------------------------------------------------
   - name: contact
-    label: Contact Details (footer)
+    label: Contact Page & Details
     type: file
     path: src/content/pages/contact.md
     fields:
+      - name: contact_heading
+        label: Contact page headline
+        type: string
+        description: The big headline at the top of your Contact page, e.g. "Let's stay in touch".
+      - name: contact_intro
+        label: Contact page intro
+        type: text
+        description: The friendly paragraph under the Contact headline.
       - name: location
         label: City and state
         type: string

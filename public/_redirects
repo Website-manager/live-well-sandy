@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects.
+# /admin → Sandy's Pages CMS editor (login-protected: only invited people get in).
+# Lands her on the full editor menu (Home / About / Contact / This Season's Picks).
+# To land her on the Specials list instead, change the target to end in /collection/specials
+/admin   https://app.pagescms.org/vbmpmanagement-pixel/live-well-sandy/main   302

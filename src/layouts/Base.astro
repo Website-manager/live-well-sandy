@@ -1,11 +1,24 @@
 ---
 import '../styles/global.css';
+import { getEntry } from 'astro:content';
 
 interface Props {
   title: string;
   description: string;
+  /** Which nav link is the current page — drives the active-state underline. */
+  active?: 'home' | 'about' | 'contact';
 }
-const { title, description } = Astro.props;
+const { title, description, active } = Astro.props;
+
+// Footer + nav store link read from the editable contact + home content,
+// so every page shares one source of truth for chrome.
+const home = await getEntry('pages', 'home');
+const contact = await getEntry('pages', 'contact');
+
+const c = contact?.data ?? {};
+const shopUrl = home?.data.cta_url ?? '#';
+const shopLabel = home?.data.cta_label ?? 'Shop with me';
+const location = c.location ?? 'Oak Ridge, Tennessee';
 ---
 
 <!DOCTYPE html>
@@ -20,7 +33,69 @@ const { title, description } = Astro.props;
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER (shared chrome) ===================== -->
+  <header id="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="Live Well, home">
+        <span class="mark">Live Well</span>
+        <span class="est">/ Est. {location}</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/" class={active === 'home' ? 'is-active' : undefined} aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+        <a href="/about" class={active === 'about' ? 'is-active' : undefined} aria-current={active === 'about' ? 'page' : undefined}>About</a>
+        <a href="/contact" class={active === 'contact' ? 'is-active' : undefined} aria-current={active === 'contact' ? 'page' : undefined}>Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">
+          {shopLabel} <span class="arr">→</span>
+        </a>
+        <button class="btn btn-ghost menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+      </div>
+    </div>
+    <!-- Mobile nav drawer (revealed by the Menu button under 720px) -->
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+      <a href="/" class={active === 'home' ? 'is-active' : undefined} aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+      <a href="/about" class={active === 'about' ? 'is-active' : undefined} aria-current={active === 'about' ? 'page' : undefined}>About</a>
+      <a href="/contact" class={active === 'contact' ? 'is-active' : undefined} aria-current={active === 'contact' ? 'page' : undefined}>Contact</a>
+      <a class="m-shop" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">{shopLabel} <span class="arr">→</span></a>
+    </nav>
+  </header>
+
   <slot />
+
+  <!-- ===================== FOOTER (shared chrome) ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="mark">Live Well</div>
+          <p>Natural wellness, shared simply, by Sandy in {location}.</p>
+          <a class="foot-shop" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">{shopLabel} <span class="arr">→</span></a>
+        </div>
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h4>Find me</h4>
+          <span>{location}</span>
+          {c.phone && <a href={`tel:${c.phone}`}>{c.phone}</a>}
+          {c.email && <a href={`mailto:${c.email}`}>{c.email}</a>}
+          {c.facebook_url && <a href={c.facebook_url} target="_blank" rel="noopener noreferrer">{c.facebook_label}</a>}
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p class="fine">© 2026 Live Wells Enterprises. &nbsp;·&nbsp; Wellness content is for
+          educational purposes and is not intended to diagnose, treat, cure, or prevent any disease.
+          Independent Wellness Advocate.</p>
+      </div>
+    </div>
+  </footer>
 
   <script is:inline>
     // header background on scroll
@@ -32,6 +107,18 @@ const { title, description } = Astro.props;
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
+
+      // mobile menu toggle
+      var toggle = document.querySelector('.menu-toggle');
+      var drawer = document.getElementById('mobile-nav');
+      if (toggle && drawer) {
+        toggle.addEventListener('click', function () {
+          var open = drawer.hasAttribute('hidden');
+          if (open) { drawer.removeAttribute('hidden'); }
+          else { drawer.setAttribute('hidden', ''); }
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+      }
 
       // scroll-reveal
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

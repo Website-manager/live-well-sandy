@@ -1,9 +1,16 @@
 ---
-story_image: "/images/sandy-about.webp"
-eyebrow: "The hands behind the bench"
+story_image: "/images/sandy-portrait.webp"
+eyebrow: "The person behind Live Well"
 quote: "\"I'm not here to sell you anything. I'm here to walk beside you while you find what makes you feel like yourself again.\""
 sign_name: "Sandy"
 sign_role: "Wellness guide · Oak Ridge, Tennessee"
+about_value_1_title: "Simple over complicated"
+about_value_1_body: "I love products and routines that fit real life. Nothing fussy, nothing overwhelming."
+about_value_2_title: "Personal, not pushy"
+about_value_2_body: "I share what I genuinely use and enjoy, and I'm always happy to answer a question first."
+about_value_3_title: "Community first"
+about_value_3_body: "Most of the people I walk alongside are friends, family, and neighbors. I'd love for you to be one too."
+classes_body: "Online classes twice a month + a live workshop in my home each month (recorded and shared so no one misses out)."
 ---
 My journey into natural wellness started with a simple, ordinary moment. I was out shopping for homeschool books one day when someone offered to share a few essential oils with me. I was curious, I tried them, and that little moment opened up a whole new world I've loved ever since.
 

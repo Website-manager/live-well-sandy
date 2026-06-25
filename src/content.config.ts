@@ -26,12 +26,30 @@ const pages = defineCollection({
     stat_2_label: z.string().optional(),
     stat_3_value: z.string().optional(),
     stat_3_label: z.string().optional(),
+    // home — "Why work with me" values trio
+    value_1_title: z.string().optional(),
+    value_1_body: z.string().optional(),
+    value_2_title: z.string().optional(),
+    value_2_body: z.string().optional(),
+    value_3_title: z.string().optional(),
+    value_3_body: z.string().optional(),
     // --- about.md (body = the story paragraphs) ---
     story_image: z.string().optional(),
     quote: z.string().optional(),
     sign_name: z.string().optional(),
     sign_role: z.string().optional(),
+    // about — "What matters to me" values trio
+    about_value_1_title: z.string().optional(),
+    about_value_1_body: z.string().optional(),
+    about_value_2_title: z.string().optional(),
+    about_value_2_body: z.string().optional(),
+    about_value_3_title: z.string().optional(),
+    about_value_3_body: z.string().optional(),
+    // about — classes & workshop callout
+    classes_body: z.string().optional(),
     // --- contact.md ---
+    contact_heading: z.string().optional(),
+    contact_intro: z.string().optional(),
     location: z.string().optional(),
     email: z.string().optional(),
     phone: z.string().optional(),

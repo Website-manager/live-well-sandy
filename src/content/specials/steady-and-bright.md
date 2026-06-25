@@ -1,5 +1,5 @@
 ---
-label: "№ 014 · Blend of the month"
+label: "Blend of the month"
 title: "Steady & Bright"
 shop_url: "https://my.doterra.com/livewell37830"
 published: true
