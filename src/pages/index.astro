@@ -1,0 +1,295 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+// ---- editable content, pulled from files (Content Layer / Pages CMS) ----
+const home = await getEntry('pages', 'home');
+const about = await getEntry('pages', 'about');
+const contact = await getEntry('pages', 'contact');
+
+if (!home || !about || !contact) {
+  throw new Error('Missing required page content (home/about/contact).');
+}
+
+const h = home.data;
+const a = about.data;
+const c = contact.data;
+
+// Render the About markdown body (the story paragraphs) to a component.
+const { Content: AboutStory } = await render(about);
+
+// Specials — published only, ordered ascending. This is the section Sandy edits.
+const specials = (await getCollection('specials', ({ data }) => data.published))
+  .sort((x, y) => x.data.order - y.data.order);
+
+// Single source for every shop link/label across nav, hero, season header & footer.
+const shopUrl = h.cta_url ?? '#';
+const shopLabel = h.cta_label ?? 'Shop with me';
+
+// Pre-render the description body for each special.
+const specialContents = await Promise.all(specials.map((s) => render(s)));
+---
+
+<Base
+  title="Live Well — Plant-based wellness, shared simply"
+  description="A modern apothecary for everyday wellness. Plant-based rituals, shared simply, from Oak Ridge, Tennessee."
+>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header id="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Live Well, home">
+        <span class="mark">Live Well</span>
+        <span class="est">/ Est. Oak Ridge TN</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#rituals">Rituals</a>
+        <a href="#season">Apothecary</a>
+        <a href="#story">Story</a>
+        <a href="#join">Journal</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">
+          {shopLabel} <span class="arr">→</span>
+        </a>
+        <button class="btn btn-ghost menu-toggle" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-tag load"><span class="tick">❋</span> {h.eyebrow}</p>
+          <h1 class="display">
+            <span class="word" style="animation-delay:.12s">{h.title}</span>
+          </h1>
+          <p class="lede load">{h.intro}</p>
+          <div class="hero-actions load">
+            <a class="btn btn-primary" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">{shopLabel} <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="#rituals">Explore the rituals</a>
+          </div>
+          <div class="hero-meta load">
+            <div><div class="m-num">{h.stat_1_value}</div><div class="m-lab">{h.stat_1_label}</div></div>
+            <div><div class="m-num">{h.stat_2_value}</div><div class="m-lab">{h.stat_2_label}</div></div>
+            <div><div class="m-num">{h.stat_3_value}</div><div class="m-lab">{h.stat_3_label}</div></div>
+          </div>
+        </div>
+
+        <div class="hero-art load">
+          <div class="art-frame">
+            {h.hero_image ? (
+              <img
+                class="hero-photo"
+                src={h.hero_image}
+                alt={`${a.sign_name ?? 'Sandy'}, wellness guide in ${c.location}`}
+              />
+            ) : (
+              <>
+                <div class="veil" aria-hidden="true"></div>
+                <div class="art-botanical" aria-hidden="true">
+                  <svg viewBox="0 0 200 280" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M100 268 C100 210 100 150 100 60" />
+                    <path d="M100 96 C72 84 52 60 50 30 C82 36 100 60 100 96 Z" fill="rgba(238,241,236,0.10)"/>
+                    <path d="M100 128 C128 116 148 92 150 62 C118 68 100 92 100 128 Z" fill="rgba(238,241,236,0.10)"/>
+                    <path d="M100 160 C74 150 56 128 54 100 C84 106 100 130 100 160 Z" fill="rgba(238,241,236,0.08)"/>
+                    <path d="M100 192 C126 182 144 160 146 132 C116 138 100 162 100 192 Z" fill="rgba(238,241,236,0.08)"/>
+                    <circle cx="100" cy="50" r="9" fill="rgba(140,207,87,0.9)" stroke="none"/>
+                    <path d="M86 230 C70 228 58 218 56 204 M114 230 C130 228 142 218 144 204" />
+                  </svg>
+                </div>
+                <div class="grain2" aria-hidden="true"></div>
+              </>
+            )}
+          </div>
+          {!h.hero_image && (
+            <div class="art-label load">
+              <span class="l-no">№ 001 · Botanical</span>
+              <span class="l-name">Garden Mint</span>
+              <span class="l-sub">cooling · clarifying · everyday</span>
+            </div>
+          )}
+        </div>
+      </div>
+      <span class="vrun load" aria-hidden="true">Plant-based · Oak Ridge, Tennessee</span>
+    </section>
+
+    <!-- ===================== MARQUEE ===================== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="item">Lavender</span><span class="item">Wild Orange</span><span class="item">Peppermint</span>
+        <span class="item">Eucalyptus</span><span class="item">Cedarwood</span><span class="item">Bergamot</span>
+        <span class="item">Lemongrass</span><span class="item">Rosemary</span>
+        <span class="item">Lavender</span><span class="item">Wild Orange</span><span class="item">Peppermint</span>
+        <span class="item">Eucalyptus</span><span class="item">Cedarwood</span><span class="item">Bergamot</span>
+        <span class="item">Lemongrass</span><span class="item">Rosemary</span>
+      </div>
+    </div>
+
+    <!-- ===================== RITUALS ===================== -->
+    <section class="rituals sec-pad" id="rituals">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <p class="eyebrow"><span class="tick">❋</span> A daily practice</p>
+          <h2 class="display">Three small rituals,<br />morning to night.</h2>
+          <p style="margin-top:1.2rem;">Wellness isn't a grand gesture. It's a handful of quiet, repeatable
+            moments — the kind that fit inside a real life with ten kids and a porch full of grandbabies.</p>
+        </div>
+        <div class="ritual-grid">
+          <article class="ritual reveal d1">
+            <svg class="r-ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="20" cy="20" r="8"/><path d="M20 4v4M20 32v4M4 20h4M32 20h4M8 8l3 3M29 29l3 3M32 8l-3 3M11 29l-3 3"/></svg>
+            <div class="r-no">01</div>
+            <h3>Morning</h3>
+            <p>A bright citrus note in the diffuser and a glass of water before the coffee. You start clear, not rushed.</p>
+          </article>
+          <article class="ritual reveal d2">
+            <svg class="r-ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6c-4 6-4 10 0 14s4 8 0 14"/><path d="M12 12c-3 4-3 7 0 10M28 12c3 4 3 7 0 10"/></svg>
+            <div class="r-no">02</div>
+            <h3>Midday</h3>
+            <p>A roller on the wrists, a deep breath of mint. A two-minute reset that pulls you back to center.</p>
+          </article>
+          <article class="ritual reveal d3">
+            <svg class="r-ico" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M30 22a11 11 0 1 1-12-15 9 9 0 0 0 12 15Z"/><path d="M26 9l1.2 2.6L30 13l-2.8 1.2L26 17l-1.2-2.8L22 13l2.8-1.4Z" fill="currentColor" stroke="none"/></svg>
+            <div class="r-no">03</div>
+            <h3>Evening</h3>
+            <p>Lavender on the pillow and the lamps turned low. The day exhales, and so do you.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THIS SEASON / APOTHECARY ===================== -->
+    <section class="season sec-pad" id="season">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="h-left">
+            <p class="eyebrow"><span class="tick">❋</span> This season at the bench</p>
+            <h2 class="display">What I'm reaching for now.</h2>
+          </div>
+          <a class="btn btn-ghost" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">See the full shelf <span class="arr">→</span></a>
+        </div>
+        <div class="feature-grid">
+          {specials.map((special, i) => {
+            const { Content: Description } = specialContents[i];
+            const offset = i % 2 === 1;
+            return (
+              <article class={`feature reveal ${i % 2 === 0 ? 'd1' : 'd2'}${offset ? ' offset' : ''}`}>
+                <div class="feature-art" aria-hidden="true">
+                  {i % 2 === 0 ? (
+                    <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="40" y="6" width="40" height="16" rx="3"/>
+                      <path d="M44 22h32v10c14 6 22 18 22 36v66a12 12 0 0 1-12 12H34a12 12 0 0 1-12-12V68c0-18 8-30 22-36V22Z" fill="rgba(238,241,236,0.08)"/>
+                      <path d="M34 96h52" stroke-width="2" opacity="0.6"/>
+                      <circle cx="60" cy="118" r="14" stroke-width="2" opacity="0.7"/>
+                      <path d="M60 110v16M52 118h16" stroke-width="2" opacity="0.7"/>
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M60 12c-3 8-3 14 0 20M60 12c3 8 3 14 0 20"/>
+                      <path d="M60 150 C60 110 60 70 60 36"/>
+                      <path d="M60 64 C40 56 28 40 26 20 C50 24 62 42 60 64Z" fill="rgba(238,241,236,0.10)"/>
+                      <path d="M60 92 C80 84 92 68 94 48 C70 52 58 70 60 92Z" fill="rgba(238,241,236,0.10)"/>
+                      <path d="M60 120 C42 114 32 100 30 84 C52 88 62 104 60 120Z" fill="rgba(238,241,236,0.08)"/>
+                    </svg>
+                  )}
+                </div>
+                <div class="feature-body">
+                  <span class="f-no">{special.data.label}</span>
+                  <h3>{special.data.title}</h3>
+                  <Description />
+                  <a class="shop" href={special.data.shop_url} target="_blank" rel="noopener noreferrer nofollow">Shop this <span class="arr">→</span></a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STORY ===================== -->
+    <section class="story sec-pad" id="story">
+      <div class="wrap story-grid">
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom:1.5rem;"><span class="tick">❋</span> {a.eyebrow}</p>
+          <blockquote class="story-quote">{a.quote}</blockquote>
+          <AboutStory />
+          <div class="sign">{a.sign_name} <small>{a.sign_role}</small></div>
+        </div>
+        <div class="story-art reveal d2">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          {a.story_image ? (
+            <img class="story-photo" src={a.story_image} alt={a.sign_name ?? 'Sandy'} />
+          ) : (
+            <svg aria-hidden="true" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M100 226 C100 170 100 110 100 40"/>
+              <path d="M100 80 C66 70 44 44 42 12 C78 18 102 44 100 80Z"/>
+              <path d="M100 116 C134 106 156 80 158 48 C122 54 98 80 100 116Z"/>
+              <path d="M100 152 C70 144 50 122 48 94 C80 100 102 124 100 152Z"/>
+              <path d="M100 188 C130 180 150 158 152 130 C120 136 98 160 100 188Z"/>
+              <circle cx="100" cy="30" r="7" fill="currentColor" stroke="none" opacity="0.85"/>
+            </svg>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NEWSLETTER ===================== -->
+    <section class="sec-pad" id="join" style="padding-block: clamp(2rem,4vh,4rem) clamp(4rem,9vh,7rem);">
+      <div class="wrap">
+        <div class="signup-panel reveal">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="signup-inner">
+            <div>
+              <p class="eyebrow" style="color:var(--seaglass-lt)"><span class="tick" style="color:var(--spring)">❋</span> The Live Well Journal</p>
+              <h2 class="display">Join the circle.</h2>
+              <p>One gentle note a month: a seasonal ritual, a small idea, and whatever I'm loving at the
+                bench. No noise — just the good stuff.</p>
+            </div>
+            <form class="signup-form" onsubmit="return false;">
+              <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+              <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+              <button class="btn btn-spring" type="submit">Join <span class="arr">→</span></button>
+              <p class="signup-fine" style="flex-basis:100%;">No spam, ever. Unsubscribe in one click.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="mark">Live Well</div>
+          <p>A modern apothecary for everyday wellness, kept by Sandy in {c.location}.</p>
+          <a class="foot-shop" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">{shopLabel} <span class="arr">→</span></a>
+        </div>
+        <div class="foot-col">
+          <h4>Wander</h4>
+          <a href="#rituals">Rituals</a>
+          <a href="#season">Apothecary</a>
+          <a href="#story">Story</a>
+          <a href="#join">Journal</a>
+        </div>
+        <div class="foot-col">
+          <h4>Find me</h4>
+          <span>{c.location}</span>
+          {c.phone && <a href={`tel:${c.phone}`}>{c.phone}</a>}
+          <a href={`mailto:${c.email}`}>{c.email}</a>
+          <a href={c.facebook_url}>{c.facebook_label}</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p class="fine">© 2026 Live Wells Enterprises. &nbsp;·&nbsp; Wellness content is for
+          educational purposes and is not intended to diagnose, treat, cure, or prevent any disease.
+          Independent Wellness Advocate.</p>
+      </div>
+    </div>
+  </footer>
+</Base>

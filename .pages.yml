@@ -1,0 +1,175 @@
+# Pages CMS configuration — https://pagescms.org/docs/configuration/
+# This file lets Sandy edit the website's words from a friendly panel.
+# It lives at the repo root and Pages CMS reads it from the default branch.
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  # ---------------------------------------------------------------------
+  # SPECIALS — the section Sandy changes each month ("This season").
+  # Add, edit, hide, or reorder these and the homepage updates on rebuild.
+  # ---------------------------------------------------------------------
+  - name: specials
+    label: This Season's Picks
+    type: collection
+    path: src/content/specials
+    view:
+      fields: [title, label, order, published]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Name of the pick
+        type: string
+        description: The big headline on the card, e.g. "Steady & Bright".
+      - name: label
+        label: Little label above the name
+        type: string
+        description: The small line above the name, e.g. "Blend of the month".
+      - name: body
+        label: Description
+        type: rich-text
+        description: A sentence or two about this pick. This is the paragraph on the card.
+        options:
+          format: markdown
+      - name: shop_url
+        label: Your doTERRA store link
+        type: string
+        description: Where the "Shop this" button sends people.
+      - name: order
+        label: Display order
+        type: number
+        description: Lower numbers show first (1, 2, 3...).
+        default: 1
+      - name: published
+        label: Show on the website?
+        type: boolean
+        description: Turn off to hide this pick without deleting it.
+        default: true
+
+  # ---------------------------------------------------------------------
+  # HOME — the top of the page: greeting, headline, and the three numbers.
+  # The store link here is used everywhere on the site.
+  # ---------------------------------------------------------------------
+  - name: home
+    label: Home Page (top of site)
+    type: file
+    path: src/content/pages/home.md
+    fields:
+      - name: hero_image
+        label: Your photo (top of the page)
+        type: image
+        description: The picture in the framed card at the top of your site. Click to upload a photo of yourself — a clear, well-lit one works best. Leave it empty to show the leaf illustration instead.
+      - name: eyebrow
+        label: Small line above the headline
+        type: string
+        description: The little label at the very top, e.g. "Natural wellness · No. 001".
+      - name: title
+        label: Big headline
+        type: string
+        description: The large headline people see first.
+      - name: intro
+        label: Welcome paragraph
+        type: text
+        description: The short paragraph under the headline.
+      - name: cta_label
+        label: Button wording
+        type: string
+        description: The words on the main button, e.g. "Shop with me".
+      - name: cta_url
+        label: Your doTERRA store link
+        type: string
+        description: The link used by the buttons in the menu, hero, and footer. Change it in one place here.
+      - name: stat_1_value
+        label: First number
+        type: string
+        description: e.g. "15+"
+      - name: stat_1_label
+        label: First number — caption
+        type: string
+        description: e.g. "Years guiding"
+      - name: stat_2_value
+        label: Second number
+        type: string
+        description: e.g. "600"
+      - name: stat_2_label
+        label: Second number — caption
+        type: string
+        description: e.g. "In the circle"
+      - name: stat_3_value
+        label: Third number
+        type: string
+        description: e.g. "100%"
+      - name: stat_3_label
+        label: Third number — caption
+        type: string
+        description: e.g. "Plant-based"
+
+  # ---------------------------------------------------------------------
+  # ABOUT — Sandy's story section.
+  # ---------------------------------------------------------------------
+  - name: about
+    label: About / Your Story
+    type: file
+    path: src/content/pages/about.md
+    fields:
+      - name: story_image
+        label: Your photo (story section)
+        type: image
+        description: The picture beside your story, further down the page. Upload a photo of yourself. Leave empty to show the leaf illustration instead.
+      - name: eyebrow
+        label: Small line above the quote
+        type: string
+        description: The little label, e.g. "The hands behind the bench".
+      - name: quote
+        label: Big quote
+        type: text
+        description: The large italic quote at the top of the story.
+      - name: body
+        label: Your story
+        type: rich-text
+        description: The paragraphs about you. Write as much as you like.
+        options:
+          format: markdown
+      - name: sign_name
+        label: Your name (signature)
+        type: string
+        description: Shown at the end of the story, e.g. "Sandy".
+      - name: sign_role
+        label: Your title / location
+        type: string
+        description: Under your name, e.g. "Wellness guide · Oak Ridge, Tennessee".
+
+  # ---------------------------------------------------------------------
+  # CONTACT — how people reach Sandy (used in the footer).
+  # ---------------------------------------------------------------------
+  - name: contact
+    label: Contact Details (footer)
+    type: file
+    path: src/content/pages/contact.md
+    fields:
+      - name: location
+        label: City and state
+        type: string
+        description: e.g. "Oak Ridge, Tennessee".
+      - name: email
+        label: Email address
+        type: string
+        description: People can click this to email you.
+      - name: phone
+        label: Phone number (optional)
+        type: string
+        description: Leave blank if you would rather not show one.
+      - name: facebook_label
+        label: Facebook link wording
+        type: string
+        description: The words for your Facebook link, e.g. "Live Well Team on Facebook".
+      - name: facebook_url
+        label: Facebook link address
+        type: string
+        description: The web address your Facebook link points to.
