@@ -565,10 +565,12 @@ footer { background: var(--pine-darker); color: rgba(238,241,236,0.75); margin-t
   .brand .est { display: none; }
   .nav-cta .btn-primary { display: none; }
   .feature { grid-template-columns: 1fr; }
-  .feature-art { aspect-ratio: 16/9; }
-  /* the decorative drawing is portrait — fit it to the short banner by
-     HEIGHT so it can't overflow and clip (was sized by width = clipped) */
-  .feature-art svg { width: auto; height: 70%; }
+  /* Full-width banner with a DEFINITE pixel height. Do NOT use aspect-ratio +
+     grid-stretch here: WebKit/iOS Safari shrink-wraps it to content (rendered
+     as a tiny green corner box on iPhone). Fixed px height + fixed px icon
+     render identically across Chromium and WebKit. */
+  .feature-art { width: 100%; aspect-ratio: auto; height: 104px; padding: 0; }
+  .feature-art svg { width: auto; height: 56px; }
   .foot-top { grid-template-columns: 1fr; gap: 2rem; }
   .hero-meta { gap: 1.6rem; }
 
