@@ -1,7 +1,7 @@
 ---
 title: Timeless Trio
 label: Limited time gift set
-shop_url: https://my.doterra.com/livewell37830
+shop_url: https://link.doterra.com/e5E_Lv
 order: 2
 published: true
 ---
