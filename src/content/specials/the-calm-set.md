@@ -1,8 +1,8 @@
 ---
-label: "A favorite to start with"
-title: "The Calm Set"
-shop_url: "https://my.doterra.com/livewell37830"
-published: true
+title: Timeless Trio
+label: Limited time gift set
+shop_url: https://my.doterra.com/livewell37830
 order: 2
+published: true
 ---
-Lavender, a soft roller, and a little ritual card — a gentle, simple place to begin.
+Take 3 beautiful blends and put them all in one sweet box- it's like magic! Beautiful, Whisper, and Shine- blends that say, "I Care", "I love you!", "You are special!". 
