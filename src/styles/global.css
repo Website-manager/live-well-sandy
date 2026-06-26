@@ -162,7 +162,17 @@ header.scrolled {
 .nav-links a.is-active { color: var(--ink); }
 .nav-links a.is-active::after { right: 0; background: var(--spring-deep); }
 .nav-cta { display: flex; align-items: center; gap: 1.2rem; }
-.menu-toggle { display: none; }
+.menu-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0; border: 1px solid var(--line);
+  border-radius: 9px; background: transparent; color: var(--ink); cursor: pointer;
+  transition: background 0.25s, border-color 0.25s;
+}
+.menu-toggle:hover { background: color-mix(in srgb, var(--pine) 8%, transparent); border-color: var(--pine); }
+.menu-toggle .ico { display: block; }
+.menu-toggle .ico-close { display: none; }
+.menu-toggle[aria-expanded="true"] .ico-open { display: none; }
+.menu-toggle[aria-expanded="true"] .ico-close { display: block; }
 
 /* mobile nav drawer */
 .mobile-nav { display: none; }
@@ -550,8 +560,15 @@ footer { background: var(--pine-darker); color: rgba(238,241,236,0.75); margin-t
 @media (max-width: 720px) {
   .nav-links { display: none; }
   .menu-toggle { display: inline-flex; }
+  /* free the header row so the hamburger fits: drop the tagline + the
+     wrapping shop button (shop link still lives in the drawer + hero + footer) */
+  .brand .est { display: none; }
+  .nav-cta .btn-primary { display: none; }
   .feature { grid-template-columns: 1fr; }
   .feature-art { aspect-ratio: 16/9; }
+  /* the decorative drawing is portrait — fit it to the short banner by
+     HEIGHT so it can't overflow and clip (was sized by width = clipped) */
+  .feature-art svg { width: auto; height: 70%; }
   .foot-top { grid-template-columns: 1fr; gap: 2rem; }
   .hero-meta { gap: 1.6rem; }
 

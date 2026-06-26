@@ -52,7 +52,10 @@ const location = c.location ?? 'Oak Ridge, Tennessee';
         <a class="btn btn-primary" href={shopUrl} target="_blank" rel="noopener noreferrer nofollow">
           {shopLabel} <span class="arr">→</span>
         </a>
-        <button class="btn btn-ghost menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg class="ico ico-open" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg class="ico ico-close" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
       </div>
     </div>
     <!-- Mobile nav drawer (revealed by the Menu button under 720px) -->
@@ -117,6 +120,7 @@ const location = c.location ?? 'Oak Ridge, Tennessee';
           if (open) { drawer.removeAttribute('hidden'); }
           else { drawer.setAttribute('hidden', ''); }
           toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
         });
       }
 
