@@ -309,6 +309,11 @@ section { position: relative; }
 .feature.offset { margin-top: clamp(0rem, 5vw, 3rem); }
 .feature-art { position: relative; background: radial-gradient(120% 100% at 30% 10%, #2c5a48, #1d3c30); display: grid; place-items: center; padding: 1.4rem; }
 .feature-art svg { width: 70%; color: rgba(238,241,236,0.92); }
+/* Editable product photo — fills the card's art area when one is uploaded in
+   the editor; the leaf illustration shows when it's left empty. Same
+   absolute-fill + object-fit: cover pattern as the hero photo, so it works on
+   desktop AND the fixed-height mobile banner below. */
+.feature-art .feature-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .feature-body { padding: 1.8rem 1.7rem 1.9rem; display: flex; flex-direction: column; }
 .feature-body .f-no { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--seaglass); }
 .feature-body h3 { font-family: var(--font-display); font-size: 1.95rem; font-weight: 600; margin: 0.6rem 0 0.5rem; line-height: 1.02; }

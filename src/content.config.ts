@@ -64,6 +64,10 @@ const specials = defineCollection({
   schema: z.object({
     label: z.string(),
     title: z.string(),
+    // Optional product photo shown in the card's art area; falls back to the
+    // decorative leaf illustration when empty. Kept in lockstep with the
+    // `product_image` field in `.pages.yml`.
+    product_image: z.string().optional(),
     shop_url: z.string(),
     published: z.boolean().default(true),
     order: z.number().default(1),
