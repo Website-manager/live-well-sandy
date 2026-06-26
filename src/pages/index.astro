@@ -155,25 +155,36 @@ const values = [
             const offset = i % 2 === 1;
             return (
               <article class={`feature reveal ${i % 2 === 0 ? 'd1' : 'd2'}${offset ? ' offset' : ''}`}>
-                <div class="feature-art" aria-hidden="true">
-                  {i % 2 === 0 ? (
-                    <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="40" y="6" width="40" height="16" rx="3"/>
-                      <path d="M44 22h32v10c14 6 22 18 22 36v66a12 12 0 0 1-12 12H34a12 12 0 0 1-12-12V68c0-18 8-30 22-36V22Z" fill="rgba(238,241,236,0.08)"/>
-                      <path d="M34 96h52" stroke-width="2" opacity="0.6"/>
-                      <circle cx="60" cy="118" r="14" stroke-width="2" opacity="0.7"/>
-                      <path d="M60 110v16M52 118h16" stroke-width="2" opacity="0.7"/>
-                    </svg>
-                  ) : (
-                    <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M60 12c-3 8-3 14 0 20M60 12c3 8 3 14 0 20"/>
-                      <path d="M60 150 C60 110 60 70 60 36"/>
-                      <path d="M60 64 C40 56 28 40 26 20 C50 24 62 42 60 64Z" fill="rgba(238,241,236,0.10)"/>
-                      <path d="M60 92 C80 84 92 68 94 48 C70 52 58 70 60 92Z" fill="rgba(238,241,236,0.10)"/>
-                      <path d="M60 120 C42 114 32 100 30 84 C52 88 62 104 60 120Z" fill="rgba(238,241,236,0.08)"/>
-                    </svg>
-                  )}
-                </div>
+                {special.data.product_image ? (
+                  <div class="feature-art">
+                    <img
+                      class="feature-photo"
+                      src={special.data.product_image}
+                      alt={special.data.title}
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <div class="feature-art" aria-hidden="true">
+                    {i % 2 === 0 ? (
+                      <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="40" y="6" width="40" height="16" rx="3"/>
+                        <path d="M44 22h32v10c14 6 22 18 22 36v66a12 12 0 0 1-12 12H34a12 12 0 0 1-12-12V68c0-18 8-30 22-36V22Z" fill="rgba(238,241,236,0.08)"/>
+                        <path d="M34 96h52" stroke-width="2" opacity="0.6"/>
+                        <circle cx="60" cy="118" r="14" stroke-width="2" opacity="0.7"/>
+                        <path d="M60 110v16M52 118h16" stroke-width="2" opacity="0.7"/>
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 120 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M60 12c-3 8-3 14 0 20M60 12c3 8 3 14 0 20"/>
+                        <path d="M60 150 C60 110 60 70 60 36"/>
+                        <path d="M60 64 C40 56 28 40 26 20 C50 24 62 42 60 64Z" fill="rgba(238,241,236,0.10)"/>
+                        <path d="M60 92 C80 84 92 68 94 48 C70 52 58 70 60 92Z" fill="rgba(238,241,236,0.10)"/>
+                        <path d="M60 120 C42 114 32 100 30 84 C52 88 62 104 60 120Z" fill="rgba(238,241,236,0.08)"/>
+                      </svg>
+                    )}
+                  </div>
+                )}
                 <div class="feature-body">
                   <span class="f-no">{special.data.label}</span>
                   <h3>{special.data.title}</h3>

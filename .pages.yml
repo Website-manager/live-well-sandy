@@ -23,6 +23,10 @@ content:
         sort: order
         order: asc
     fields:
+      - name: product_image
+        label: Product photo (optional)
+        type: image
+        description: A photo to show on the left side of this card. Click to upload an image — one of the free product photos you download works well. Leave it empty to show the leaf illustration instead.
       - name: title
         label: Name of the pick
         type: string
