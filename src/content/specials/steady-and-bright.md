@@ -1,8 +1,9 @@
 ---
-label: "Blend of the month"
-title: "Steady & Bright"
-shop_url: "https://my.doterra.com/livewell37830"
-published: true
+title: Endless Summer!
+label: Blend of the month
+shop_url: https://my.doterra.com/livewell37830
 order: 1
+published: true
 ---
-A grounding citrus-and-cedar blend for the in-between hours. The one that keeps living on my desk.
+An uplifting blend that takes me to my favorite outdoor places! Love diffusing this!
+
