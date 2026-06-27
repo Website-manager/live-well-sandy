@@ -1,8 +1,11 @@
 name: Deploy to Cloudflare Pages
 
-# Auto-deploy: every push to main (which is what a Pages CMS "Save" creates)
-# rebuilds the Astro site and deploys it to the Cloudflare Pages project.
-# Sandy edits → Save → commit → this Action → live in ~1 minute.
+# Deploy on push to main. Sandy's CMS saves AND Atlas-merged edits both deploy
+# automatically — there is no deploy-time approval. The compliance scan below still
+# runs on EVERY deploy, so non-compliant content (a disease/income claim) fails the
+# deploy and never goes live, with no human needed. Carson's approval lives upstream
+# and ONLY on the Atlas "client requested a fix" path (approved in Atlas before merge);
+# Sandy's own edits publish freely.
 
 on:
   push:
@@ -29,6 +32,13 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+
+      # Defense-in-depth: run the compliance scan on the ACTUAL artifact about to
+      # deploy. Branch protection runs it on PRs; this guarantees it also runs on
+      # the deploy regardless of how the commit reached main (direct push, admin
+      # merge, etc.). If a disease/income claim is present, the deploy FAILS here.
+      - name: Compliance scan (gate the deploy)
+        run: node scripts/compliance-lint.mjs
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
