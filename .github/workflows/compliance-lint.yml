@@ -1,0 +1,43 @@
+name: compliance-lint
+
+# The REQUIRED check on every pull request. Builds the site and runs the doTERRA /
+# FTC compliance scan (scripts/compliance-lint.mjs). A PR cannot merge into `main`
+# unless this passes (enforced by branch protection). See COMPLIANCE.md.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: compliance-lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compliance-lint:
+    name: compliance-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Guard the GUARD: the regression suite proves the scanner still catches the
+      # known bypasses and still passes honest copy. If someone weakens the rules,
+      # this fails before the scan can give a false green.
+      - name: Compliance scanner self-test
+        run: npm run compliance:test
+
+      # Build, then sweep the rendered site (dist/) — not just source.
+      - run: npm run build
+
+      - name: doTERRA / FTC compliance scan
+        run: npm run compliance
