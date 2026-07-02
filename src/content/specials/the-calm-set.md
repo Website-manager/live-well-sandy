@@ -1,4 +1,6 @@
 ---
+product_image: /images/Sun Essentials Travel Kit-Limited Time Offer--Social
+  Media-US Market-Instagram-Promo-Post-3.jpg
 title: Timeless Trio
 label: Limited time gift set
 shop_url: https://link.doterra.com/e5E_Lv
