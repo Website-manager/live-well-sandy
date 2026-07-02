@@ -1,6 +1,6 @@
 ---
 product_image: /images/Deep Blue 5 mL-Gingham Bag-Limited Time Offer-July 2026
-  Product of the Month-Product Image-Transparent-US Market-PNG-v1.jpg
+  Product of the Month-Product Image-Transparent-US Market-PNG-v1-2.jpg
 title: Deep Blue (Red, White, and Blue!)
 label: Product of the month
 shop_url: https://link.doterra.com/mQ4Q9x
