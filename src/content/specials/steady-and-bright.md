@@ -7,5 +7,5 @@ shop_url: https://link.doterra.com/mQ4Q9x
 order: 1
 published: true
 ---
-When you've worked those muscles and they're letting you know it, reach for Deep Blue for quick relief! And to celebrate America's birthday, you'll get a FREE red and white bag with your Deep Blue- perfect for carrying your outdoors essentials! Free with a 125 pv Rewards order or when getting started with Foundational Wellness!
+When you've worked those muscles and they're letting you know it, reach for Deep Blue for quick relief! And to celebrate America's birthday, you'll get a FREE red and white bag with your Deep Blue- perfect for carrying your outdoors essentials! Free with a 125 point order or when getting started with Foundational Wellness!
 
