@@ -1,5 +1,6 @@
 ---
 story_image: /images/sandy-portrait.webp
+story_aside_image: /images/sandy-with-mom.jpg
 eyebrow: The person behind Live Well
 quote: "\"I'm not here to sell you anything. I'm here to walk beside you while
   you find what makes you feel like yourself again.\""

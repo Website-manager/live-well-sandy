@@ -138,6 +138,11 @@ content:
         label: Reason 3 — short text
         type: text
         description: A sentence or two explaining the third reason.
+      # --- Featured product photo in the "Ready to start?" box (Sandy swaps monthly) ---
+      - name: featured_image
+        label: Featured product photo (bottom of home page)
+        type: image
+        description: The product photo in the "Ready to start?" box near the bottom of your home page. Click to upload a new one — great for featuring a different product each month.
 
   # ---------------------------------------------------------------------
   # ABOUT — Sandy's story section.
@@ -148,9 +153,13 @@ content:
     path: src/content/pages/about.md
     fields:
       - name: story_image
-        label: Your photo (story section)
+        label: Your photo (top of the About page)
         type: image
-        description: The picture beside your story, further down the page. Upload a photo of yourself. Leave empty to show the leaf illustration instead.
+        description: The framed photo at the very top of your story page. Click to upload a photo of yourself. Leave empty to show the leaf illustration instead.
+      - name: story_aside_image
+        label: Photo beside your story (you and your mom)
+        type: image
+        description: The smaller photo further down, next to your story — right now it's you and your mom at the beach. Click to upload a different photo.
       - name: eyebrow
         label: Small line above the quote
         type: string
