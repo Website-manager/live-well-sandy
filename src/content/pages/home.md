@@ -1,5 +1,6 @@
 ---
 hero_image: /images/sandy-portrait.webp
+welcome_image: /images/sandy-about.webp
 featured_image: /images/oil-bottle.jpg
 eyebrow: Natural wellness · Oak Ridge, TN
 title: Natural wellness, shared simply.

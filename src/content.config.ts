@@ -33,6 +33,9 @@ const pages = defineCollection({
     value_2_body: z.string().optional(),
     value_3_title: z.string().optional(),
     value_3_body: z.string().optional(),
+    // home — the "Hi, I'm Sandy" welcome-section photo.
+    // Kept in lockstep with `welcome_image` in `.pages.yml`.
+    welcome_image: z.string().optional(),
     // home — featured product photo in the shop CTA (Sandy swaps monthly).
     // Kept in lockstep with `featured_image` in `.pages.yml`.
     featured_image: z.string().optional(),

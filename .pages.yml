@@ -69,6 +69,10 @@ content:
         label: Your photo (top of the page)
         type: image
         description: The picture in the framed card at the top of your site. Click to upload a photo of yourself — a clear, well-lit one works best. Leave it empty to show the leaf illustration instead.
+      - name: welcome_image
+        label: Your photo (the "Hi, I'm Sandy" section)
+        type: image
+        description: The photo in the "Hi, I'm Sandy" welcome section, a little further down the home page. Click to upload a different photo of yourself.
       - name: eyebrow
         label: Small line above the headline
         type: string
