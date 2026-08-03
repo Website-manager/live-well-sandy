@@ -1,6 +1,6 @@
 ---
 hero_image: /images/sandy-portrait.webp
-welcome_image: /images/IMG_20260801_084127644.jpg
+welcome_image: /images/IMG_20260801_084127644 resized SD photo.jpg
 eyebrow: Natural wellness · Oak Ridge, TN
 title: Natural wellness, shared simply.
 intro: Hi, I'm Sandy. I help everyday people bring a little more calm and care
