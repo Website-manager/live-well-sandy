@@ -1,7 +1,6 @@
 ---
 hero_image: /images/sandy-portrait.webp
-welcome_image: /images/sandy-about.webp
-featured_image: /images/oil-bottle.jpg
+welcome_image: /images/IMG_20260801_084127644.jpg
 eyebrow: Natural wellness · Oak Ridge, TN
 title: Natural wellness, shared simply.
 intro: Hi, I'm Sandy. I help everyday people bring a little more calm and care
@@ -24,4 +23,5 @@ value_2_body: Curious before you try something? Reach out anytime. I'm happy to
 value_3_title: Learn right alongside me
 value_3_body: I host online classes twice a month and a workshop in my home, so
   there's always a friendly place to learn together.
+featured_image: /images/oil-bottle.jpg
 ---
