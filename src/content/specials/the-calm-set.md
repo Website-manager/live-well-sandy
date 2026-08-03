@@ -3,7 +3,7 @@ product_image: /images/Castor Oil Bundle-Limited Time Offer-Product
   Image-Transparent-US Market-PNG-v1.png
 title: Castor oil bundle
 label: Detox naturally!
-shop_url: https://link.doterra.com/aXB6Ze
+shop_url: https://link.doterra.com/DgLZnR
 order: 2
 published: true
 ---
