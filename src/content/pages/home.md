@@ -23,5 +23,5 @@ value_2_body: Curious before you try something? Reach out anytime. I'm happy to
 value_3_title: Learn right alongside me
 value_3_body: I host online classes twice a month and a workshop in my home, so
   there's always a friendly place to learn together.
-featured_image: /images/oil-bottle.jpg
+featured_image: /images/Recharge your Health-Supplements-social media image-square-v1.png
 ---
