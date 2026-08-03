@@ -1,11 +1,10 @@
 ---
-product_image: /images/Deep Blue 5 mL-Gingham Bag-Limited Time Offer-July 2026
-  Product of the Month-Product Image-Transparent-US Market-PNG-v1-2.jpg
-title: Deep Blue (Red, White, and Blue!)
-label: Product of the month
+product_image: /images/August 2026-Promotion-Social Media-US-English-Banner-2 (1).jpg
+title: Support your immune system!
+label: Product of the month- OnGuard
 shop_url: https://link.doterra.com/mQ4Q9x
 order: 1
 published: true
 ---
-When you've worked those muscles and they're letting you know it, reach for Deep Blue for quick relief! And to celebrate America's birthday, you'll get a FREE red and white bag with your Deep Blue- perfect for carrying your outdoors essentials! Free with a 125 point order or when getting started with Foundational Wellness!
+Back to School means it's time to add extra support- especially for all those children! Use OnGuard daily- a drop in a glass of water, tea or juice- or use in a roller bottle on bottom of feet and spine a.m. and p.m. to add that extra boost for the immune system! 
 
