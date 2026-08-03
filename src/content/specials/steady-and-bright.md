@@ -1,5 +1,6 @@
 ---
-product_image: /images/August 2026-Promotion-Social Media-US-English-Banner-2 (1).jpg
+product_image: /images/On Guard 5 mL-Essential Oils-Social
+  Media-US-English-Instagram-Usage-C-Post-2.jpg
 title: Support your immune system!
 label: Product of the month- OnGuard
 shop_url: https://link.doterra.com/mQ4Q9x
